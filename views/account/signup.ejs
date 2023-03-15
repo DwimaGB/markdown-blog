@@ -1,0 +1,19 @@
+<% if(errorMessage){ %>
+    <p class="text-danger"><%= errorMessage %></p>
+<% } %>
+
+<form action="/signup" method="POST" class="container-sm"> 
+    
+    <div class="form-group mb-2">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="form-control" required>
+    </div>
+
+    <%- include('_form_fields.ejs') %>
+
+    <button class="btn btn-primary">Sign Up</button>
+</form>
+
+<div class="container-sm mt-4">
+    <a href="/auth/google">Sign in With Google</a>
+</div>

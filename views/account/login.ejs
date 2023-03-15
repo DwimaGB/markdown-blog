@@ -1,0 +1,10 @@
+
+<% if(messages){ %>
+    <p class="text-danger"><%= messages.error %></p>
+<% } %>
+
+<form action="/login" method="POST" class="container-sm">
+    <%- include('_form_fields.ejs') %>
+
+    <button class="btn btn-primary">Log In</button>
+</form>
