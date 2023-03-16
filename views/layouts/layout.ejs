@@ -11,7 +11,12 @@
 </head>
 
 <body>
-    <%- include('../partials/header.ejs') %>
+    <% if(locals.user){ %>
+        <%- include('../partials/user-header.ejs') %>
+    <% }else{ %>
+        <%- include('../partials/header.ejs') %>
+    <% } %>
+
     <main class="container-sm">
         <%- body %>
     </main>

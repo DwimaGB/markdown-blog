@@ -1,6 +1,6 @@
 
 
-const User = require('../models/user');
+const User = require('../../models/user');
 
 module.exports.renderPage = (req, res)=>{
     const err = req.flash('error')[0];

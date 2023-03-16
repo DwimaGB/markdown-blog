@@ -40,7 +40,7 @@ app.use(helmet.contentSecurityPolicy({
     }
 }))
 app.use(exressLayout);
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cookieParser());
@@ -63,21 +63,29 @@ app.use(passport.session());
 
 // app.use(viewsCount.countViews);
 
-app.use((req, res, next)=>{
-    console.log(req.user);
+// app.use((req, res, next)=>{
+//     console.log(req.user);
 
-    console.log(req.session);
+//     // console.log(req.session);
  
-    // console.log(res.headersSent);
-    next();
-})
+//     // console.log(res.headersSent);
+//     next();
+// })
 
-app.get('/', (req, res)=>{
-    res.render('index');
-})
-
+// app.get('/', (req, res)=>{
+//     if(req.isAuthenticated()){
+//         res.render('index', {user: req.user});
+//     }
+//     else{
+//         res.render('index');
+//     }
+// })
+app.use('/', require('./routes/index'));
 app.use('/signup', require('./routes/account/signUp'));
 app.use('/login', require('./routes/account/login'));
+app.use('/logout', require('./routes/account/logout'));
+
+app.use('/articles', require('./routes/articles'));
 
 // app.use(errorHandler);
 

@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const login = require('../../controllers/login');
+const login = require('../../controllers/account/login');
 // const {verifyPassword} = require('../../middlewares/authMiddlewares');
 
 const passport = require('passport');
@@ -12,9 +12,7 @@ router.route('/')
     .post(passport.authenticate('local', ({
         failureFlash: true,
         failureRedirect: '/login'
-    })), (req, res)=>{
-        res.json({msg: "Successfully Logged In"});
-    })
+    })), login.redirectHome)
  
 
 module.exports = router;
