@@ -2,7 +2,10 @@
 const express = require('express');
 const router = express.Router();
 
+
 const article = require('../controllers/articles');
+
+router.get('/', article.userArticles);
 
 router.route('/new')
     .get(article.renderNewPage)

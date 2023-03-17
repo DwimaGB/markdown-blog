@@ -43,7 +43,7 @@ app.use(helmet.contentSecurityPolicy({
 }))
 app.use(exressLayout);
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -88,6 +88,7 @@ app.use('/login', require('./routes/account/login'));
 app.use('/logout', require('./routes/account/logout'));
 
 app.use('/articles', require('./routes/articles'));
+app.use('/user', require('./routes/user'));
 
 // app.use(errorHandler);
 

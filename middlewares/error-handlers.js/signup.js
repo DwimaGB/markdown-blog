@@ -15,15 +15,15 @@ const UsernameAlreadyExistsError = require('../../utils/classes/usernameAlreadyE
 //     }
 // })
 
-const usernameAlreadyExistsError = (err, req, res, next)=>{
-    if(err instanceof UsernameAlreadyExistsError){
-                req.flash('error', err.message);
-                console.log(err);
-                res.redirect('/signup');
-            }
-            else{
-                res.status(500).json({err: err.message});
-            }
+const usernameAlreadyExistsError = (err, req, res, next) => {
+    if (err instanceof UsernameAlreadyExistsError) {
+        req.flash('error', err.message);
+        // console.log(err);
+        res.redirect('/signup');
+    }
+    else {
+        res.status(500).json({ err: err.message });
+    }
 }
 
 // module.exports = router;

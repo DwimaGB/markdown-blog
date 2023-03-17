@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+
+:root{
+    --header-text: #ededed;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+.logo{
+    font-size: 1.825rem;
+    color: var(--header-text);
+    margin: 1rem 2rem;
+}
+
+
+.card-text{
+    font-family: 'EB Garamond', serif;
+    font-size: 1.25rem;
+    letter-spacing: 1.2px;
+}
+
+.primary-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links :is(li, a){  
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--header-text);
+}
+
+.nav-links{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 2rem;
+}
+
+.nav-links a:hover{
+    border-bottom: var(--header-text) 1.4px solid;
+}
+
+
+/*  */
+
+.title{
+    letter-spacing: -0.4px;
+}
+
+.link{
+    color: inherit;
+    text-decoration: none;
+}

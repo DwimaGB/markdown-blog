@@ -7,7 +7,7 @@ module.exports.renderNewPage = (req, res)=>{
 
 module.exports.newArticle = async(req, res, next)=>{
     try{
-        const article = await Article.create({title: req.body.title, description: req.body.description, markdown: req.body.markdown});
+        const article = await Article.create({title: req.body.title, description: req.body.description, markdown: req.body.markdown, user: req.user.id});
 
         res.redirect(`/articles/show/${article.id}`);
     }
@@ -17,7 +17,18 @@ module.exports.newArticle = async(req, res, next)=>{
 }
 
 
-module.exports.showArticle = async(req, res)=>{
+module.exports.userArticles = async(req, res, next)=>{
+    try{
+        const articles = await Article.find({user: req.user.id}).populate('user');
+
+        res.render('articles/index', {user: req.user, articles});
+    }
+    catch(e){
+        next(e);
+    }
+}
+
+module.exports.showArticle = async(req, res, next)=>{
     try{
         const article = await Article.findById(req.params.id);
 
