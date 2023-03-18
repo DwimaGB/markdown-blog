@@ -1,15 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&display=swap');
 
 :root{
     --header-text: #ededed;
 }
 
 body{
+    min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
     color: #333;
-    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
 }
+ 
+/* footer always at the end */
+main{
+    flex-grow: 1;  
+}
+
 
 .logo{
     font-size: 1.825rem;
@@ -19,9 +27,9 @@ body{
 
 
 .card-text{
-    font-family: 'EB Garamond', serif;
-    font-size: 1.25rem;
-    letter-spacing: 1.2px;
+    font-family: 'Roboto Slab', serif;
+    /* font-size: 1.05rem; */
+    letter-spacing: 1.5px;
 }
 
 .primary-header{
@@ -49,6 +57,23 @@ body{
     border-bottom: var(--header-text) 1.4px solid;
 }
 
+.blog-post{
+    max-width: 100ch;
+    margin: 0 auto;
+}
+
+.blog-post p{
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.125rem;
+    letter-spacing: 1.25px;
+    line-height: 1.8;
+}
+
+
+.primary-footer{
+    height: 20px;
+    
+}
 
 /*  */
 

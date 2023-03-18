@@ -93,6 +93,9 @@ app.use('/logout', require('./routes/account/logout'));
 app.use('/user', require('./routes/user'));
 app.use('/articles', require('./routes/articles'));
 
+app.use((req, res) => {
+    res.status(404).render('404', {user: req.user});
+});
 
 app.use(errorHandler);
 // app.use((err, req, res, next)=>{

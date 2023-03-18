@@ -1,6 +1,6 @@
 
 const UsernameAlreadyExistsError = require('../utils/classes/usernameAlreadyExistsError');
-const NotFoundError = require('../utils/classes/usernameAlreadyExistsError');
+const NotFoundError = require('../utils/classes/notFoundError');
 
 
 const errorHandler = (err, req, res, next) => {
@@ -10,7 +10,8 @@ const errorHandler = (err, req, res, next) => {
         res.redirect('/signup');
     }
     else if (err instanceof NotFoundError) {
-        res.send(err);
+        // res.send(err);
+        res.status(404).render('404', {user: req.user});
     }
     else {
         console.log(err);

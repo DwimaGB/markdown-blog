@@ -6,6 +6,9 @@ const login = require('../../controllers/account/login');
 // const {verifyPassword} = require('../../middlewares/authMiddlewares');
 
 const passport = require('passport');
+const {redirectUser} = require('../../middlewares/redirect-user');
+
+router.use(redirectUser);
 
 router.route('/')
     .get(login.renderPage)
