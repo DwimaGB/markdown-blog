@@ -19,5 +19,12 @@ const hashPassword = async(req, res, next)=>{
 }   
 
 
+const isAuthorized = (req, res, next)=>{
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/auth/login');
+}
 
-module.exports = {hashPassword};
+
+module.exports = {hashPassword, isAuthorized};

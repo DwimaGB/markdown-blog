@@ -14,7 +14,7 @@ module.exports.newArticle = async(req, res, next)=>{
             user: req.user.id,
             docModel: req.user.provider === 'google'? 'GoogleUser': 'User'});
 
-        res.redirect(`/articles/show/${article.id}`);
+        res.redirect(`/articles/${article.id}`);
     }
     catch(e){
         next(e);
@@ -36,7 +36,7 @@ module.exports.userArticles = async(req, res, next)=>{
 
 module.exports.showArticle = async(req, res, next)=>{
     try{
-        const article = await Article.findById(req.params.id);
+        const article = await Article.findOne({slug: req.params.slug});
 
         res.render('articles/show', {user: req.user, article});
     }

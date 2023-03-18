@@ -19,6 +19,7 @@ const exressLayout = require('express-ejs-layouts');
 
 const viewsCount = require('./middlewares/count-views');
 
+
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 mongoose.connect(process.env.DATABASE_URL);
@@ -38,8 +39,9 @@ app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
     directives: {
         defaultSrc: ["self"],
-        scriptSrc: ["self", "https://cdn.jsdelivr.net"]
+        scriptSrc: ["self", "https://cdn.jsdelivr.net"],
     }
+    
 }))
 app.use(exressLayout);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -88,8 +90,8 @@ app.use('/auth/login', require('./routes/account/login'));
 app.use('/auth/google', require('./routes/account/google'));
 app.use('/logout', require('./routes/account/logout'));
 
-app.use('/articles', require('./routes/articles'));
 app.use('/user', require('./routes/user'));
+app.use('/articles', require('./routes/articles'));
 
 app.use((err, req, res, next)=>{
     res.status(500).json({error: err.message});

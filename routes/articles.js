@@ -2,15 +2,16 @@
 const express = require('express');
 const router = express.Router();
 
+const {isAuthorized} = require('../middlewares/authMiddlewares');
 
 const article = require('../controllers/articles');
 
-router.get('/', article.userArticles);
+router.get('/', isAuthorized, article.userArticles);  
 
 router.route('/new')
-    .get(article.renderNewPage)
-    .post(article.newArticle);
+    .get(isAuthorized, article.renderNewPage)
+    .post(isAuthorized, article.newArticle);
 
-router.get('/show/:id', article.showArticle);
+router.get('/:slug', article.showArticle); // view other articles without logged in
 
 module.exports = router;
