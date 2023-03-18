@@ -12,7 +12,7 @@ module.exports.handleSignUp = async(req, res, next)=>{
     try{
         const user = await User.create({name: req.body.name, username: req.body.username, password: req.body.password});
 
-        res.redirect('/login');
+        res.redirect('/auth/login');
     }
     catch(e){
         // console.log(e);

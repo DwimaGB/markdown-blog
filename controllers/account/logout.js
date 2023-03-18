@@ -13,9 +13,12 @@ const logout = (req, res) => {
             console.log(err);
             res.redirect('/');
         }
+        else{
+            res.redirect('/');
+        }
     })
 
-    res.redirect('/');
+    
 }
 
 

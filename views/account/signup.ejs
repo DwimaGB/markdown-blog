@@ -2,18 +2,25 @@
     <p class="text-danger"><%= errorMessage %></p>
 <% } %>
 
-<form action="/signup" method="POST" class="container-sm"> 
+<div class="container-form-sm">
+    <form action="/signup" method="POST"> 
     
-    <section class="form-group mb-2">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" class="form-control" required>
-    </section>
+        <section class="form-group mb-2">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </section>
 
-    <%- include('_form_fields.ejs') %>
+        <%- include('_form_fields.ejs') %>
 
-    <button class="btn btn-primary">Sign Up</button>
-</form>
+        <button class="btn btn-primary">Sign Up</button>
+    </form>
 
-<div class="container-sm mt-4">
-    <a href="/auth/google">Sign Up With Google</a>
+    <div class="text-secondary mt-4">
+        <hr>
+    </div>
+
+    <div class="mt-4">
+        <a href="/auth/google">Sign Up With Google</a>
+    </div>
+
 </div>

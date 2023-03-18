@@ -7,7 +7,12 @@ module.exports.renderNewPage = (req, res)=>{
 
 module.exports.newArticle = async(req, res, next)=>{
     try{
-        const article = await Article.create({title: req.body.title, description: req.body.description, markdown: req.body.markdown, user: req.user.id});
+        const article = await Article.create({
+            title: req.body.title,
+            description: req.body.description, 
+            markdown: req.body.markdown, 
+            user: req.user.id,
+            docModel: req.user.provider === 'google'? 'GoogleUser': 'User'});
 
         res.redirect(`/articles/show/${article.id}`);
     }
@@ -19,8 +24,9 @@ module.exports.newArticle = async(req, res, next)=>{
 
 module.exports.userArticles = async(req, res, next)=>{
     try{
-        const articles = await Article.find({user: req.user.id}).populate('user');
+        const articles = await Article.find({user: req.user.id}).sort({createdAt: -1}).populate('user', 'name').exec();
 
+        // console.log(articles);
         res.render('articles/index', {user: req.user, articles});
     }
     catch(e){

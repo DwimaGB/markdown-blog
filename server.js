@@ -84,13 +84,16 @@ app.use(passport.session());
 // })
 app.use('/', require('./routes/index'));
 app.use('/signup', require('./routes/account/signUp'));
-app.use('/login', require('./routes/account/login'));
+app.use('/auth/login', require('./routes/account/login'));
+app.use('/auth/google', require('./routes/account/google'));
 app.use('/logout', require('./routes/account/logout'));
 
 app.use('/articles', require('./routes/articles'));
 app.use('/user', require('./routes/user'));
 
-// app.use(errorHandler);
+app.use((err, req, res, next)=>{
+    res.status(500).json({error: err.message});
+});
 
 
 

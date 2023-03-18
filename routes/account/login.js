@@ -11,7 +11,7 @@ router.route('/')
     .get(login.renderPage)
     .post(passport.authenticate('local', ({
         failureFlash: true,
-        failureRedirect: '/login'
+        failureRedirect: '/auth/login'
     })), login.redirectHome)
  
 

@@ -19,7 +19,12 @@ const articleSchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Types.ObjectId,
-        ref: 'User'
+        refPath: 'docModel',
+    },
+    docModel: {
+        type: String,
+        required: true,
+        enum: ['User', 'GoogleUser']
     }
 });
 

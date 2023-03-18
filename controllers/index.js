@@ -6,12 +6,13 @@ module.exports.renderPage = async(req, res)=>{
     const filterSearch = req.query['search-query'];
     try{
         if(filterSearch){
-            articles = await Article.find({}).regex('title', new RegExp(filterSearch, 'i')).sort({createdAt: -1}).populate('user').exec();
+            articles = await Article.find({}).regex('title', new RegExp(filterSearch, 'i')).sort({createdAt: -1}).populate({path: 'user', select: 'name username'}).exec();
         }
         else{
-            articles = await Article.find({}).limit(30).sort({createdAt: -1}).populate('user').exec();
+            articles = await Article.find({}).limit(30).sort({createdAt: -1}).populate({path: 'user', select: 'name username'}).exec();
         }
         // console.log(articles);
+        // console.log(req.user);
 
         res.render('index', {user: req.user, articles, search: filterSearch});
     }
