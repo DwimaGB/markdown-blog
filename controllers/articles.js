@@ -1,5 +1,6 @@
 
 const Article = require('../models/article');
+const NotFoundError = require('../utils/classes/notFoundError');
 
 module.exports.renderNewPage = (req, res)=>{
     res.render('articles/new', {user: req.user, article: {}});
@@ -14,7 +15,7 @@ module.exports.newArticle = async(req, res, next)=>{
             user: req.user.id,
             docModel: req.user.provider === 'google'? 'GoogleUser': 'User'});
 
-        res.redirect(`/articles/${article.id}`);
+        res.redirect(`/articles/${article.slug}`);
     }
     catch(e){
         next(e);
@@ -27,6 +28,7 @@ module.exports.userArticles = async(req, res, next)=>{
         const articles = await Article.find({user: req.user.id}).sort({createdAt: -1}).populate('user', 'name').exec();
 
         // console.log(articles);
+        // console.log(req.user);
         res.render('articles/index', {user: req.user, articles});
     }
     catch(e){
@@ -38,6 +40,11 @@ module.exports.showArticle = async(req, res, next)=>{
     try{
         const article = await Article.findOne({slug: req.params.slug});
 
+        // console.log(article);
+        if(!article){
+            const err = new NotFoundError("404 not found!")
+            return next(err)
+        }
         res.render('articles/show', {user: req.user, article});
     }
     catch(e){

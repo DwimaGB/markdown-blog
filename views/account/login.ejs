@@ -1,10 +1,12 @@
-<% if(messages){ %>
-    <p class="text-danger">
-        <%= messages.error %>
-    </p>
-    <% } %>
+
 
 <div class="container-form-sm"> 
+    <% if(messages){ %>
+        <p class="text-danger">
+            <%= messages.error %>
+        </p>
+        <% } %>
+        
     <form action="/auth/login" method="POST">
             <%- include('_form_fields.ejs') %>
             <button class="btn btn-primary">Log In</button>

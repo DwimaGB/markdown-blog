@@ -1,8 +1,10 @@
-<% if(errorMessage){ %>
-    <p class="text-danger"><%= errorMessage %></p>
-<% } %>
+
 
 <div class="container-form-sm">
+    <% if(errorMessage){ %>
+        <p class="text-danger"><%= errorMessage %></p>
+    <% } %>
+    
     <form action="/signup" method="POST"> 
     
         <section class="form-group mb-2">

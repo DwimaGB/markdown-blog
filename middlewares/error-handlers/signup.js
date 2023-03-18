@@ -21,9 +21,6 @@ const usernameAlreadyExistsError = (err, req, res, next) => {
         // console.log(err);
         res.redirect('/signup');
     }
-    else {
-        res.status(500).json({ err: err.message });
-    }
 }
 
 // module.exports = router;

@@ -18,7 +18,7 @@ const MongoStore = require('connect-mongo');
 const exressLayout = require('express-ejs-layouts');
 
 const viewsCount = require('./middlewares/count-views');
-
+const errorHandler = require('./middlewares/error-handlers');
 
 const mongoose = require('mongoose');
 const helmet = require('helmet');
@@ -93,9 +93,12 @@ app.use('/logout', require('./routes/account/logout'));
 app.use('/user', require('./routes/user'));
 app.use('/articles', require('./routes/articles'));
 
-app.use((err, req, res, next)=>{
-    res.status(500).json({error: err.message});
-});
+
+app.use(errorHandler);
+// app.use((err, req, res, next)=>{
+//     console.log(err);
+//     res.status(500).json({error: err.message});
+// });
 
 
 
