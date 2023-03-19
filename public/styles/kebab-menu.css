@@ -1,18 +1,18 @@
-/* kebab-menu */
+/*.kebab-menu */
 
 .menu{
     justify-self: end;
     position: relative;
 }
 
-#kebab-menu{
+.kebab-menu{
     background: none;
     border: none;
     transform: translateY(20%);
     padding: 1rem;
 }
 
-#kebab-menu .dot, #kebab-menu .dot::before, #kebab-menu .dot::after{
+.kebab-menu .dot, .kebab-menu .dot::before, .kebab-menu .dot::after{
     display: block;
     width: 6px;
     height: 6px;
@@ -20,14 +20,14 @@
     background-color: #333;
 }
 
-#kebab-menu .dot::before{
+.kebab-menu .dot::before{
     content: "";
     position: absolute;
     transform: translateY(-200%); 
 
 }
 
-#kebab-menu .dot::after{
+.kebab-menu .dot::after{
     content: "";
     position: absolute;
     transform: translateY(200%); 
@@ -36,7 +36,7 @@
 
 
 
-#kebab-menu:hover{
+.kebab-menu:hover{
     cursor: pointer;
 }
 
@@ -60,20 +60,23 @@
    
 }
 
-
 .dropdown-links a{
     text-decoration: none;
     display: inline-block;
 }
 
-.dropdown-links a{
+.dropdown-links :is(a, button){
     font-weight: 500;
     width: 100%;
     padding: 1.25rem 2.5rem;
   
 }
+.dropdown-links button{
+    background: none;
+    border: none;
+}
 
-.dropdown-links a:hover{
+.dropdown-links :is(a, button):hover{
     background-color: #eee;
 }
 

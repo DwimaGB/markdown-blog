@@ -1,13 +1,13 @@
 <article class="blog-post">
 
-    <div class="grid grid-2-col  mb-5">
+    <div class="grid grid-2-col">
         <h1 class="display-6 ">
             <%= article.title %>
         </h1>
 
         <% if(showMenu){ %>
             <div class="menu">
-                <button id="kebab-menu" aria-controls="menu" aria-expanded="false">
+                <button class="kebab-menu" aria-controls="menu" aria-expanded="false">
                     <span class="sr-only">Menu</span>
                     <span class="dot"></span>
     
@@ -15,7 +15,11 @@
                 <div class="dropdown" data-visible="false">
                     <ul class="dropdown-links">
                         <li><a href="/articles/<%= article.id %>/edit" class="text-primary">Edit</a></li>
-                        <li><a href="" class="text-danger" id="<%= article.id %>">Delete</a></li>
+                        <li>
+                            <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
+                                <button class="text-danger">Delete</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -23,6 +27,7 @@
         
 
     </div>
+    <p class="text-muted mb-4"><%= article.createdAt.toLocaleString("en-US", {day: 'numeric', month: 'short', year: 'numeric'}) %></p>
     <p><%- article.htmlContent %></p>
 
 

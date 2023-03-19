@@ -95,3 +95,15 @@ module.exports.editArticle = async(req, res, next)=>{
         next(e);
     }
 }
+
+
+module.exports.deleteArticle = async(req, res, next)=>{
+    try{
+        await Article.findByIdAndDelete(req.params.id);
+
+        res.redirect('/articles');
+    }
+    catch(e){
+        next(e);
+    }
+}

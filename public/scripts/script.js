@@ -1,6 +1,6 @@
 
 
-const menuButton = document.getElementById("kebab-menu");
+const menuButton = document.querySelector(".kebab-menu");
 const dropdown = document.querySelector(".dropdown");
 
 menuButton.addEventListener('click', (e) => {
