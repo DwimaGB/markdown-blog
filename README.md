@@ -1,3 +1,1 @@
 # markdown-blog
-
-On development
