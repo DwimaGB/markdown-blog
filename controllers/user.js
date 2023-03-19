@@ -12,7 +12,7 @@ module.exports.userArticles = async(req, res, next)=>{
         // console.log(req.params.user);
 
         articles = articles.filter(article=>article.user.username === req.params.user);
-        console.log(articles);
+        // console.log(articles);
 
         if(articles.length ===  0){
             const err = new NotFoundError('404 Not Found!');

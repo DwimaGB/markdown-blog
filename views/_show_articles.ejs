@@ -1,11 +1,13 @@
-<h1>
-    <%= articles[0].user.name %>
-</h1>
-<div class="text-muted mb-5">
-    <hr>
-</div>
 
 <% if(articles.length !== 0){ %>
+
+    <h1>
+        <%= articles[0].user.name %>
+    </h1>
+    <div class="text-muted mb-5">
+        <hr>
+    </div>
+    
 
     <% for(let article of articles){ %>
         <article class="card mt-4">

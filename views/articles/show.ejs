@@ -1,10 +1,30 @@
 <article class="blog-post">
 
-    <h1 class="display-6 mb-5">
-        <%= article.title %>
-    </h1>
+    <div class="grid grid-2-col  mb-5">
+        <h1 class="display-6 ">
+            <%= article.title %>
+        </h1>
 
+        <% if(showMenu){ %>
+            <div class="menu">
+                <button id="kebab-menu" aria-controls="menu" aria-expanded="false">
+                    <span class="sr-only">Menu</span>
+                    <span class="dot"></span>
+    
+                </button>
+                <div class="dropdown" data-visible="false">
+                    <ul class="dropdown-links">
+                        <li><a href="/articles/<%= article.id %>/edit" class="text-primary">Edit</a></li>
+                        <li><a href="" class="text-danger" id="<%= article.id %>">Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+        <% } %>
+        
+
+    </div>
     <p><%- article.htmlContent %></p>
 
 
 </article>
+

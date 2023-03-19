@@ -8,6 +8,7 @@ const express = require('express');
 const app = express();
 const flash = require('express-flash');
 const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override');
 
 // const errorHandler = require('./middlewares/errorHandler');
 
@@ -39,10 +40,12 @@ app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
     directives: {
         defaultSrc: ["self"],
-        scriptSrc: ["self", "https://cdn.jsdelivr.net"],
+        scriptSrc: ["self", "https://cdn.jsdelivr.net", "https://127.0.0.1:3000/scripts/script.js"],
     }
     
 }))
+
+app.use(methodOverride('_method'));
 app.use(exressLayout);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: false}));

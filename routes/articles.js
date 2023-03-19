@@ -14,4 +14,8 @@ router.route('/new')
 
 router.get('/:slug', article.showArticle); // view other articles without logged in
 
+router.route('/:id/edit')
+    .get(article.renderEditPage)
+    .patch(article.editArticle);
+
 module.exports = router;

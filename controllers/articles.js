@@ -37,15 +37,59 @@ module.exports.userArticles = async(req, res, next)=>{
 }
 
 module.exports.showArticle = async(req, res, next)=>{
+    let isAuthorizedUser = false;
     try{
-        const article = await Article.findOne({slug: req.params.slug});
+        const article = await Article.findOne({slug: req.params.slug}).populate('user').exec();
 
         // console.log(article);
         if(!article){
-            const err = new NotFoundError("404 not found!")
+            const err = new NotFoundError("404 not Found!")
             return next(err)
         }
-        res.render('articles/show', {user: req.user, article});
+        if(req.user){
+            isAuthorizedUser = req.user.id === article.user.id; // for showing the menu of edit and delete to that specific user
+        }
+        // console.log(isAuthorizedUser);
+
+        res.render('articles/show', {user: req.user, showMenu: isAuthorizedUser, article});
+    }
+    catch(e){
+        next(e);
+    }
+}
+
+
+module.exports.renderEditPage = async(req, res, next)=>{
+    try{
+        const article = await Article.findById(req.params.id);
+
+        // console.log(article);
+        if(!article){
+            const err = new NotFoundError("404 not Found!");
+            return next(err);
+        }
+        res.render('articles/edit', {user: req.user, article})
+    }
+    catch(e){
+        next(e);
+    }
+}
+
+module.exports.editArticle = async(req, res, next)=>{
+    let article;
+    try{
+        // console.log(req.body);
+        // console.log(req.params);
+        article = await Article.findById(req.params.id);
+
+        article.title = req.body.title;
+        article.description = req.body.description;
+        article.markdown = req.body.markdown;
+
+        article = await article.save();
+
+        // console.log(article);
+        res.redirect(`/articles/${article.slug}`)
     }
     catch(e){
         next(e);
